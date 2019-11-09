@@ -12,16 +12,19 @@
 
 
 /***************************** VARIABLES ***************************************/
+const uint8_t magnetPin = 12;                                       // Pin a laquelle est branche laimant
 const uint8_t numberOfButtons = 5;                                  // Nombre de boutons
-const uint8_t  arr_buttonPin[numberOfButtons] = { 2, 3, 4, 5, 6 };  // Numero des pins auxquelles sont branches les boutons
-const uint8_t arr_suite[numberOfButtons] = {2, 3, 4, 5, 6};         // Suite a trouver (numero des pins) 
+const uint8_t arr_buttonPin[numberOfButtons] = { 2, 3, 4, 5, 6 };    // Numero des pins auxquelles sont branches les boutons
+
+/* ATTENTION : BIEN MODIFIER LE NOMBRE DE PRESS SI MODIFICATION DE LA SUITE */
+const uint8_t numberOfPress = 7;                                     // Nombre de pressions
+const uint8_t arr_suite[numberOfPress] = {2, 4, 4, 3, 4, 5, 6};      // Suite a trouver (numero des pins)
+
 
 uint8_t suiteIndex = 0;                                       // index in the suite
 uint8_t arr_buttonPushCounter[numberOfButtons] = {0};         // counter for the number of button presses
 uint8_t arr_buttonState[numberOfButtons] = {0};               // current state of the button
 uint8_t arr_lastButtonState[numberOfButtons] = {0};           // previous state of the button
-
-const uint8_t  ledPin = 12; // the pin that the LED is attached to
 
 
 /***************************** FUNCTIONS ***************************************/
@@ -45,11 +48,29 @@ void checkButton(uint8_t buttonPin, uint8_t * buttonState, uint8_t * lastButtonS
         suiteIndex = 0;
       }
 
-      if (suiteIndex == numberOfButtons) {
-        digitalWrite(ledPin, HIGH);
+//      switch(suiteIndex) {
+//        case 0:
+//          if (buttonPin == arr_suite[suiteIndex]) {
+//            suiteIndex++;
+//          } else {
+//            suiteIndex = 0;
+//          }
+//          break;
+//        
+//        case 1:
+//          if (buttonPin == arr_suite[suiteIndex]) {
+//            suiteIndex++;
+//          } else {
+//            suiteIndex = 0;
+//          }
+//          break;
+//      }
+
+      if (suiteIndex == numberOfPress) {
+        digitalWrite(magnetPin, LOW);
         suiteIndex = 0;
       } else {
-        digitalWrite(ledPin, LOW);
+        digitalWrite(magnetPin, HIGH);
       }
 
       
@@ -62,18 +83,7 @@ void checkButton(uint8_t buttonPin, uint8_t * buttonState, uint8_t * lastButtonS
   *lastButtonState = *buttonState;
 }
 
-void checkPushes(uint8_t buttonPushCounter) {
-  // turns on the LED every four button pushes by checking the modulo of the
-  // button push counter. the modulo function gives you the remainder of the
-  // division of two numbers:
-  if (buttonPushCounter != 0 && buttonPushCounter % 4 == 0) {
-    digitalWrite(ledPin, HIGH);
-  } else {
-    digitalWrite(ledPin, LOW);
-  }
-}
-
-/***************************** MAIN ***************************************/
+/***************************** PROGRAM ***************************************/
 void setup() {
 
   for (int i=0; i<numberOfButtons; ++i) {
@@ -81,8 +91,8 @@ void setup() {
   }
   
   // initialize the LED as an output:
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, LOW);
+  pinMode(magnetPin, OUTPUT);
+  digitalWrite(magnetPin, HIGH);
   
   // initialize serial communication:
   Serial.begin(9600);

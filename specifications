@@ -1,0 +1,13 @@
+Project name: puhs buttons
+Room: Salle de jeux des années 30
+Deadline for test : 30 november 2019
+
+Use case:
+A player push 5 buttons x times (NO) in a certain order to open a door.
+
+Work:
+Code a software to activate an ouput regarding a combination of inputs activated by pushing buttons.
+Be able to modify easily the combination.
+5 buttons max.
+
+

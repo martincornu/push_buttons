@@ -4,19 +4,16 @@
   created  9 Nov 2019
   modified 9 Nov 2019
   by Martin CORNU
-
-  Suite de boutons à appuyer dans le bon ordre (boutons 1 à 5)
-  -> 1;2;3;4;5
   
 */
 
 
 /***************************** VARIABLES ***************************************/
-const uint8_t magnetPin = 12;                                       // Pin a laquelle est branche laimant
-const uint8_t numberOfButtons = 5;                                  // Nombre de boutons
+const uint8_t magnetPin = 12;                                        // Pin a laquelle est branche laimant
+const uint8_t numberOfButtons = 5;                                   // Nombre de boutons
 const uint8_t arr_buttonPin[numberOfButtons] = { 2, 3, 4, 5, 6 };    // Numero des pins auxquelles sont branches les boutons
 
-/* ATTENTION : BIEN MODIFIER LE NOMBRE DE PRESS SI MODIFICATION DE LA SUITE */
+/* ATTENTION : BIEN MODIFIER LE NOMBRE DE PRESSIONS SI MODIFICATION DE LA SUITE */
 const uint8_t numberOfPress = 7;                                     // Nombre de pressions
 const uint8_t arr_suite[numberOfPress] = {2, 4, 4, 3, 4, 5, 6};      // Suite a trouver (numero des pins)
 
@@ -47,25 +44,7 @@ void checkButton(uint8_t buttonPin, uint8_t * buttonState, uint8_t * lastButtonS
       } else {
         suiteIndex = 0;
       }
-
-//      switch(suiteIndex) {
-//        case 0:
-//          if (buttonPin == arr_suite[suiteIndex]) {
-//            suiteIndex++;
-//          } else {
-//            suiteIndex = 0;
-//          }
-//          break;
-//        
-//        case 1:
-//          if (buttonPin == arr_suite[suiteIndex]) {
-//            suiteIndex++;
-//          } else {
-//            suiteIndex = 0;
-//          }
-//          break;
-//      }
-
+      
       if (suiteIndex == numberOfPress) {
         digitalWrite(magnetPin, LOW);
         suiteIndex = 0;

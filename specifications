@@ -9,6 +9,7 @@ Work:
 Code a software to activate an ouput regarding a combination of inputs activated by pushing buttons.
 Be able to modify easily the combination.
 5 buttons max.
+Turn on green led if puzzle ok, red led if not.
 
 Time working:
 - 09/11 18h30 -> 23h30 5h

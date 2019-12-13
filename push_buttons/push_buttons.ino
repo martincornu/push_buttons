@@ -13,6 +13,9 @@ const uint8_t magnetPin = 12;                                        // Pin a la
 const uint8_t numberOfButtons = 5;                                   // Nombre de boutons
 const uint8_t arr_buttonPin[numberOfButtons] = { 2, 3, 4, 5, 6 };    // Numero des pins auxquelles sont branches les boutons
 
+const uint8_t ledGreenPin = A2;          /* Pin de la led verte */
+const uint8_t ledRedPin = A3;           /* Pin de la led rouge */
+
 /* ATTENTION : BIEN MODIFIER LE NOMBRE DE PRESSIONS SI MODIFICATION DE LA SUITE */
 const uint8_t numberOfPress = 7;                                     // Nombre de pressions
 const uint8_t arr_suite[numberOfPress] = {2, 4, 4, 3, 4, 5, 6};      // Suite a trouver (numero des pins)
@@ -48,8 +51,12 @@ void checkButton(uint8_t buttonPin, uint8_t * buttonState, uint8_t * lastButtonS
       if (suiteIndex == numberOfPress) {
         digitalWrite(magnetPin, LOW);
         suiteIndex = 0;
+        digitalWrite(ledGreenPin, LOW);
+        digitalWrite(ledRedPin, HIGH);
       } else {
         digitalWrite(magnetPin, HIGH);
+        digitalWrite(ledGreenPin, HIGH);
+        digitalWrite(ledRedPin, LOW);
       }
 
       
@@ -72,6 +79,10 @@ void setup() {
   // initialize the LED as an output:
   pinMode(magnetPin, OUTPUT);
   digitalWrite(magnetPin, HIGH);
+  pinMode(ledGreenPin, OUTPUT);
+  digitalWrite(ledGreenPin, LOW);
+  pinMode(ledRedPin, OUTPUT);
+  digitalWrite(ledRedPin, HIGH);
   
   // initialize serial communication:
   Serial.begin(9600);

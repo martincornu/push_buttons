@@ -7,6 +7,8 @@
   
 */
 
+//#define DEBUG
+
 
 /***************************** VARIABLES ***************************************/
 const uint8_t magnetPin = 12;                                        // Pin a laquelle est branche laimant
@@ -38,9 +40,12 @@ void checkButton(uint8_t buttonPin, uint8_t * buttonState, uint8_t * lastButtonS
     if (*buttonState == HIGH) {
       // if the current state is HIGH then the button went from off to on:
       (*buttonPushCounter)++;
+
+      #ifdef DEBUG
       Serial.println("\non");
       Serial.print("number of button pushes: ");
       Serial.println(*buttonPushCounter);
+      #endif
 
       if (buttonPin == arr_suite[suiteIndex]) {
         suiteIndex++;
@@ -62,7 +67,9 @@ void checkButton(uint8_t buttonPin, uint8_t * buttonState, uint8_t * lastButtonS
       
     } else {
       // if the current state is LOW then the button went from on to off:
+      #ifdef DEBUG
       Serial.println("off");
+      #endif
     }
   }
   // save the current state as the last state, for next time through the loop
@@ -85,7 +92,9 @@ void setup() {
   digitalWrite(ledRedPin, HIGH);
   
   // initialize serial communication:
+  #ifdef DEBUG
   Serial.begin(9600);
+  #endif
 }
 
 

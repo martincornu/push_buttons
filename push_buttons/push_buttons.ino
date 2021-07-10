@@ -12,15 +12,15 @@
 
 /***************************** VARIABLES ***************************************/
 const uint8_t magnetPin = 12;                                        // Pin a laquelle est branche laimant
-const uint8_t numberOfButtons = 5;                                   // Nombre de boutons
-const uint8_t arr_buttonPin[numberOfButtons] = { 2, 3, 4, 5, 6 };    // Numero des pins auxquelles sont branches les boutons
+const uint8_t numberOfButtons = 4;                                   // Nombre de boutons
+const uint8_t arr_buttonPin[numberOfButtons] = { 2, 3, 4, 5 };    // Numero des pins auxquelles sont branches les boutons
 
 const uint8_t ledGreenPin = A2;          /* Pin de la led verte */
 const uint8_t ledRedPin = A3;           /* Pin de la led rouge */
 
 /* ATTENTION : BIEN MODIFIER LE NOMBRE DE PRESSIONS SI MODIFICATION DE LA SUITE */
-const uint8_t numberOfPress = 7;                                     // Nombre de pressions
-const uint8_t arr_suite[numberOfPress] = {2, 4, 4, 3, 4, 5, 6};      // Suite a trouver (numero des pins)
+const uint8_t numberOfPress = 6;                                     // Nombre de pressions
+const uint8_t arr_suite[numberOfPress] = {2, 3, 4, 5, 4, 5};      // Suite a trouver (numero des pins)
 
 
 uint8_t suiteIndex = 0;                                       // index in the suite

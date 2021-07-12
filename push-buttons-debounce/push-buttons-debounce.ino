@@ -8,6 +8,7 @@
 */
 
 //#define DEBUG
+#define VIDEO_DURATION_MS (55000)
 
 
 /***************************** VARIABLES ***************************************/
@@ -15,8 +16,8 @@ const uint8_t magnetPin = 12;                                        // Pin a la
 const uint8_t numberOfButtons = 4;                                   // Nombre de boutons
 const uint8_t arr_buttonPin[numberOfButtons] = { 2, 3, 4, 5 };    // Numero des pins auxquelles sont branches les boutons
 
-const uint8_t ledGreenPin = A3;          /* Pin de la led verte */
-const uint8_t ledRedPin = A2;           /* Pin de la led rouge */
+const uint8_t ledGreenPin = A2;          /* Pin de la led verte */
+const uint8_t ledRedPin = A3;           /* Pin de la led rouge */
 
 /* ATTENTION : BIEN MODIFIER LE NOMBRE DE PRESSIONS SI MODIFICATION DE LA SUITE */
 const uint8_t numberOfPress = 6;                                     // Nombre de pressions
@@ -79,14 +80,16 @@ void checkButton(uint8_t buttonPin, uint8_t * buttonState, uint8_t * lastButtonS
 
           pinMode(magnetPin, OUTPUT);
           digitalWrite(magnetPin, LOW);
-          digitalWrite(ledGreenPin, HIGH);
           digitalWrite(ledRedPin, LOW);
-          delay(5000); /* wait before start again */
+          digitalWrite(ledGreenPin, HIGH);
+          delay(500);
           suiteIndex = 0;
-          pinMode(magnetPin, INPUT);  //floating input. pull-up raspberry pi side
+          pinMode(magnetPin, INPUT);        /* floating input. pull-up raspberry pi side */
+          
+          delay(VIDEO_DURATION_MS - 15000); /* wait a bit less than video duration */
           digitalWrite(ledGreenPin, LOW);
         } else {
-          pinMode(magnetPin, INPUT);  //floating input. pull-up raspberry pi side
+          pinMode(magnetPin, INPUT);        /* floating input. pull-up raspberry pi side */
           digitalWrite(ledGreenPin, LOW);
           digitalWrite(ledRedPin, HIGH);
         }

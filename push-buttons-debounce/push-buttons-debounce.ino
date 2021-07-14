@@ -16,8 +16,8 @@ const uint8_t magnetPin = 12;                                        // Pin a la
 const uint8_t numberOfButtons = 4;                                   // Nombre de boutons
 const uint8_t arr_buttonPin[numberOfButtons] = { 2, 3, 4, 5 };    // Numero des pins auxquelles sont branches les boutons
 
-const uint8_t ledGreenPin = A2;          /* Pin de la led verte */
-const uint8_t ledRedPin = A3;           /* Pin de la led rouge */
+const uint8_t ledGreenPin = A3;          /* Pin de la led verte */
+const uint8_t ledRedPin = A2;           /* Pin de la led rouge */
 
 /* ATTENTION : BIEN MODIFIER LE NOMBRE DE PRESSIONS SI MODIFICATION DE LA SUITE */
 const uint8_t numberOfPress = 6;                                     // Nombre de pressions
